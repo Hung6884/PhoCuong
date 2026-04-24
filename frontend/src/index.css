@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-brand-brown text-brand-cream font-sans;
+    margin: 0;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-brand-brown;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-gold rounded-full;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-red hover:bg-brand-red-light text-brand-cream font-medium px-6 py-2.5 rounded transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .btn-gold {
+    @apply bg-brand-gold hover:bg-brand-gold-light text-brand-brown font-semibold px-6 py-2.5 rounded transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .btn-outline {
+    @apply border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-brown font-medium px-6 py-2.5 rounded transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .card {
+    @apply bg-brand-brown-light border border-brand-gold/20 rounded-lg overflow-hidden;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-serif font-bold text-brand-gold text-center mb-2;
+  }
+
+  .section-subtitle {
+    @apply text-brand-cream/60 text-center mb-10 text-sm tracking-widest uppercase;
+  }
+
+  .input-field {
+    @apply bg-brand-brown border border-brand-gold/30 text-brand-cream placeholder-brand-cream/40 rounded px-4 py-2.5 w-full focus:outline-none focus:border-brand-gold transition-colors;
+  }
+
+  .label {
+    @apply block text-brand-gold text-sm font-medium mb-1;
+  }
+
+  .badge {
+    @apply text-xs px-2 py-0.5 rounded-full font-medium;
+  }
+
+  .table-container {
+    @apply overflow-x-auto rounded-lg border border-brand-gold/20;
+  }
+
+  .table {
+    @apply w-full text-sm;
+  }
+
+  .table th {
+    @apply bg-brand-brown text-brand-gold font-semibold text-left px-4 py-3 border-b border-brand-gold/20;
+  }
+
+  .table td {
+    @apply px-4 py-3 border-b border-brand-gold/10 text-brand-cream/80;
+  }
+
+  .table tr:last-child td {
+    @apply border-0;
+  }
+
+  .table tr:hover td {
+    @apply bg-brand-brown/50;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .gold-border {
+    border-image: linear-gradient(to right, transparent, #C9A84C, transparent) 1;
+  }
+}
+
+/* Hero section video overlay */
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(44, 24, 16, 0.3), rgba(44, 24, 16, 0.8));
+}
+
+/* Animated underline for nav */
+.nav-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #C9A84C;
+  transition: width 0.3s;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Gold divider */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #C9A84C;
+}
+.gold-divider::before,
+.gold-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #C9A84C, transparent);
+}

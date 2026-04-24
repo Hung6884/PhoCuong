@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: phocuong_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: phocuong123
+      MYSQL_DATABASE: phocuong
+      MYSQL_USER: phocuong
+      MYSQL_PASSWORD: phocuong123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pphocuong123"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: phocuong_backend
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: phocuong123
+      DB_NAME: phocuong
+      JWT_SECRET: phocuong-super-secret-2024
+      PORT: 8080
+      GIN_MODE: release
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./backend/static:/app/static
+
+volumes:
+  mysql_data:
